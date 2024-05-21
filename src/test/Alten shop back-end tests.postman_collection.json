@@ -7,10 +7,19 @@
 	},
 	"item": [
 		{
-			"name": "Get all products",
+			"name": "Create product 1",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n\t\"code\": \"xx57lrf37\",\r\n\t\"name\": \"Red T-Shirt\",\r\n\t\"description\": \"Product Description\",\r\n\t\"image\": \"red-t-shirt.jpg\",\r\n\t\"price\": 29,\r\n\t\"category\": \"Clothing\",\r\n\t\"quantity\": 20,\r\n\t\"inventoryStatus\": \"INSTOCK\",\r\n\t\"rating\": 5\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "http://localhost:3000/products",
 					"protocol": "http",
@@ -26,19 +35,10 @@
 			"response": []
 		},
 		{
-			"name": "Create product 1",
+			"name": "Get all products",
 			"request": {
-				"method": "POST",
+				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n\t\"id\": 1,\r\n\t\"code\": \"xx57lrf37\",\r\n\t\"name\": \"Red T-Shirt\",\r\n\t\"description\": \"Product Description\",\r\n\t\"image\": \"red-t-shirt.jpg\",\r\n\t\"price\": 29,\r\n\t\"category\": \"Clothing\",\r\n\t\"quantity\": 20,\r\n\t\"inventoryStatus\": \"INSTOCK\",\r\n\t\"rating\": 5\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
 					"raw": "http://localhost:3000/products",
 					"protocol": "http",
@@ -80,7 +80,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"id\": 1,\r\n    \"code\": \"xx57lrf37\",\r\n\t\"name\": \"Light red T-Shirt\",\r\n\t\"description\": \"New product Description\",\r\n\t\"image\": \"Light red-t-shirt.jpg\",\r\n\t\"price\": 34,\r\n\t\"category\": \"Clothing\",\r\n\t\"quantity\": 3,\r\n\t\"inventoryStatus\": \"LOWSTOCK\",\r\n\t\"rating\": 4\r\n}",
+					"raw": "{\r\n    \"code\": \"xx57lrf37\",\r\n\t\"name\": \"Light red T-Shirt\",\r\n\t\"description\": \"New product Description\",\r\n\t\"image\": \"Light red-t-shirt.jpg\",\r\n\t\"price\": 34,\r\n\t\"category\": \"Clothing\",\r\n\t\"quantity\": 3,\r\n\t\"inventoryStatus\": \"LOWSTOCK\",\r\n\t\"rating\": 4\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -117,6 +117,25 @@
 					"path": [
 						"products",
 						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE all products",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"products"
 					]
 				}
 			},
