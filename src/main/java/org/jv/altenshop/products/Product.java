@@ -1,21 +1,24 @@
-package org.jv.altenshop.entities;
+package org.jv.altenshop.products;
 
 import java.io.Serializable;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 /**
  * Product entity.
  */
 @Entity
-public class Product implements Serializable {
+public class Product implements Serializable, Cloneable {
     
 	private static final long serialVersionUID = 3593826873538083186L;
 	
 	@Id
-    private long id;
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     
     private String code;
     
@@ -29,7 +32,7 @@ public class Product implements Serializable {
     
     private String image;
     
-    private float price;
+    private int price;
     
     private int quantity;
     
@@ -39,7 +42,7 @@ public class Product implements Serializable {
     	super();
     }
     
-	public Product(String code, String name, String description, String inventoryStatus, String category, String image, float price, int quantity, int rating) {
+	public Product(String code, String name, String description, String inventoryStatus, String category, String image, int price, int quantity, int rating) {
         this.code = code;
         this.name = name;
         this.description = description;
@@ -51,7 +54,7 @@ public class Product implements Serializable {
         this.rating = rating;
     }
 	
-    public long getId() {
+    public Integer getId() {
         return id;
     }
     
@@ -103,11 +106,11 @@ public class Product implements Serializable {
 		this.image = image;
 	}
 	
-	public float getPrice() {
+	public int getPrice() {
 		return price;
 	}
 	
-	public void setPrice(float price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 	
@@ -133,26 +136,33 @@ public class Product implements Serializable {
 			return true;
 		if (obj == null)
 			return false;
-		if (this.getClass() != obj.getClass())
+		if (getClass() != obj.getClass())
 			return false;
 		Product other = (Product) obj;
 		return Objects.equals(category, other.category) && Objects.equals(code, other.code)
-				&& Objects.equals(description, other.description) && id == other.id
+				&& Objects.equals(description, other.description) && Objects.equals(id, other.id)
 				&& Objects.equals(image, other.image) && Objects.equals(inventoryStatus, other.inventoryStatus)
-				&& Objects.equals(name, other.name) && Float.floatToIntBits(price) == Float.floatToIntBits(other.price)
-				&& quantity == other.quantity && rating == other.rating;
+				&& Objects.equals(name, other.name) && price == other.price && quantity == other.quantity
+				&& rating == other.rating;
 	}
 	
-    @Override
+	@Override
 	public int hashCode() {
 		return Objects.hash(category, code, description, id, image, inventoryStatus, name, price, quantity, rating);
 	}
-    
+	
 	@Override
-	public String toString() {
-		return "Product [id=" + id + ", code=" + code + ", name=" + name + ", description=" + description
-				+ ", inventoryStatus=" + inventoryStatus + ", category=" + category + ", image=" + image + ", price="
-				+ price + ", quantity=" + quantity + ", rating=" + rating + "]";
-	}
-    
+    public Product clone() {
+        Product clone = null;
+        
+        try {
+        	clone = (Product) super.clone();
+        }
+        catch (CloneNotSupportedException e) {
+            throw new UnsupportedOperationException();
+        }
+        
+        return clone;
+    }
+	
 }
