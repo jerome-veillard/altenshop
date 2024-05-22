@@ -1,83 +1,48 @@
 package org.jv.altenshop.products.productservice;
 
+
 import java.util.Optional;
 
 import org.jv.altenshop.products.Product;
-import org.jv.altenshop.products.productrepository.ProductRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-@Service
-public class ProductService {
-
-	private static final Logger logger = LoggerFactory.getLogger(ProductService.class);
-	
-	@Autowired
-	private ProductRepository productRepository;
+/**
+ * CRUD services.
+ */
+public interface ProductService {
 	
 	/**
-	 * CREATE new product.
+	 * CREATE.
 	 */
-	public void createProduct(Product product) {
-		this.productRepository.save(product);
-	}
+	Product createProduct(Product product);
 	
-	/**
-	 * READ all.
-	 */
-	public Iterable<Product> getAllProducts() {
-		return this.productRepository.findAll();
-	}
-	
-	/**
-	 * READ by id.
-	 */
-	public Optional<Product> getProductById(Integer id) {
-		return this.productRepository.findById(id);
-	}
-
 	/**
 	 * Fine-grained UPDATE of an existing product.
 	 */
-	public Product updateProduct(Integer productId, Product product) {
-		Optional<Product> productFromDbOpt = this.productRepository.findById(productId);
-		
-		if (productFromDbOpt.isEmpty()) {
-			throw new IllegalStateException("Product " + productId + " not found !");
-		}
-		
-		Product productFromDb = productFromDbOpt.get();
-		
-		logger.info("Product from DB : " + productFromDb);
-		
-		// Field to field copy
-		productFromDb.setCode(product.getCode());
-		productFromDb.setName(product.getName());
-		productFromDb.setDescription(product.getDescription());
-		productFromDb.setImage(product.getImage());
-		productFromDb.setPrice(product.getPrice());
-		productFromDb.setCategory(product.getCategory());
-		productFromDb.setQuantity(product.getQuantity());
-		productFromDb.setInventoryStatus(product.getInventoryStatus());
-		productFromDb.setRating(product.getRating());
-		
-		return this.productRepository.save(productFromDb);
-	}
-	
-	/**
-	 * DELETE by id.
+	Product updateProduct(Integer productId, Product product);
+    
+    /**
+	 * DELETE.
 	 */
-	public void deleteProduct(Integer productId) {
-		this.productRepository.deleteById(productId);
-	}
-	
+    void deleteProduct(Integer productId);
+
 	/**
 	 * DELETE all.
 	 */
-	public void deleteAllProducts() {
-		this.productRepository.deleteAll();
-	}
-	
+    void deleteAllProducts();
+    
+    /**
+	 * READ by id.
+	 */
+    Optional<Product> readProductById(Integer id);
+    
+    /**
+	 * READ all.
+	 */
+    Iterable<Product> readAllProducts();
+    
+    /**
+	 * Check.
+	 */
+    boolean checkIfIdExists(Integer id);
+    
 }

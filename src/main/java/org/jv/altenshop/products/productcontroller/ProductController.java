@@ -32,6 +32,12 @@ public class ProductController {
 	public ResponseEntity<Product> createProduct(@RequestBody Product product) {
 		logger.info("Attempt to CREATE : " + product);
 		
+		// TODO : existing product case
+//		Product existingProduct = this.productService.getProductById();
+//		if (existingProduct != null) {
+//			return new ResponseEntity<Product>(HttpStatus.CONFLICT);
+//		}
+		
 		this.productService.createProduct(product);
 		
 		logger.info("Product " + product.getId() + " created...");
@@ -46,7 +52,7 @@ public class ProductController {
 	public ResponseEntity<Iterable<Product>> getAllProducts() {
 		logger.info("Attempt to GET all products...");
 		
-		Iterable<Product> allProducts = this.productService.getAllProducts();
+		Iterable<Product> allProducts = this.productService.readAllProducts();
 		
 		return new ResponseEntity<>(allProducts, HttpStatus.FOUND);
 	}
@@ -58,7 +64,7 @@ public class ProductController {
 	public ResponseEntity<Product> getProduct(@PathVariable Integer productId) {
 		logger.info("Attempt to GET product " + productId);
 		
-		Optional<Product> productOpt = this.productService.getProductById(productId);
+		Optional<Product> productOpt = this.productService.readProductById(productId);
 		
 		if (productOpt.isEmpty()) {
 			throw new IllegalStateException("Product " + productId + " not found !");
