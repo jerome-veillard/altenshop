@@ -3,7 +3,7 @@ package org.jv.altenshop.products.productservice;
 
 import java.util.Optional;
 
-import org.jv.altenshop.products.Product;
+import org.jv.altenshop.products.productmodel.Product;
 
 /**
  * CRUD services.

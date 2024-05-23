@@ -2,7 +2,7 @@ package org.jv.altenshop.products.productcontroller;
 
 import java.util.Optional;
 
-import org.jv.altenshop.products.Product;
+import org.jv.altenshop.products.productmodel.Product;
 import org.jv.altenshop.products.productservice.ProductService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

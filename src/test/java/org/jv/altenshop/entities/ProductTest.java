@@ -14,7 +14,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.jv.altenshop.products.Product;
+import org.jv.altenshop.products.productmodel.Product;
 
 class ProductTest {
 	

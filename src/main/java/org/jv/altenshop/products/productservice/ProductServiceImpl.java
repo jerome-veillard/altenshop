@@ -2,14 +2,16 @@ package org.jv.altenshop.products.productservice;
 
 import java.util.Optional;
 
-import org.jv.altenshop.products.Product;
+import org.jv.altenshop.products.productmodel.Product;
 import org.jv.altenshop.products.productrepository.ProductRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 class ProductServiceImpl implements ProductService {
 
 	private static final Logger logger = LoggerFactory.getLogger(ProductService.class);

@@ -1,6 +1,6 @@
 package org.jv.altenshop.products.productrepository;
 
-import org.jv.altenshop.products.Product;
+import org.jv.altenshop.products.productmodel.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

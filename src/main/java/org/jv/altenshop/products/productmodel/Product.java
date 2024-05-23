@@ -1,4 +1,4 @@
-package org.jv.altenshop.products;
+package org.jv.altenshop.products.productmodel;
 
 import java.io.Serializable;
 import java.util.Objects;
