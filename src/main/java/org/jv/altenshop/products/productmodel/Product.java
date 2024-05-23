@@ -20,7 +20,7 @@ public class Product implements Serializable, Cloneable {
 //	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
-    private String code;
+	private String code;
     
 	private String name;
     
@@ -42,7 +42,8 @@ public class Product implements Serializable, Cloneable {
     	super();
     }
     
-	public Product(String code, String name, String description, String inventoryStatus, String category, String image, int price, int quantity, int rating) {
+	public Product(Integer id, String code, String name, String description, String inventoryStatus, String category, String image, int price, int quantity, int rating) {
+		this.id = id;
         this.code = code;
         this.name = name;
         this.description = description;
@@ -58,10 +59,14 @@ public class Product implements Serializable, Cloneable {
         return id;
     }
     
+    public void setId(Integer id) {
+		this.id = id;
+	}
+    
     public String getCode() {
 		return code;
 	}
-
+    
     public void setCode(String code) {
 		this.code = code;
 	}
@@ -69,7 +74,7 @@ public class Product implements Serializable, Cloneable {
 	public String getName() {
 		return name;
 	}
-
+	
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -149,6 +154,13 @@ public class Product implements Serializable, Cloneable {
 	@Override
 	public int hashCode() {
 		return Objects.hash(category, code, description, id, image, inventoryStatus, name, price, quantity, rating);
+	}
+	
+	@Override
+	public String toString() {
+		return "Product [id=" + this.id + ", code=" + this.code + ", name=" + this.name + ", description=" + this.description
+				+ ", inventoryStatus=" + this.inventoryStatus + ", category=" + this.category + ", image=" + this.image + ", price="
+				+ this.price + ", quantity=" + this.quantity + ", rating=" + this.rating + "]";
 	}
 	
 	@Override
